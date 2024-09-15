@@ -1,23 +1,20 @@
 const cron = require("node-cron");
 const express = require("express");
 
-const { playGame } = require("./func/PlayGame");
-const { claimRewards } = require("./func/ClaimReward");
-const { DailyRewards } = require("./func/DailyReward");
-const { mission, claimMission } = require("./func/Mission");
 const { configDotenv } = require("dotenv");
+const { dailyMission } = require("./func/dailyMission");
+const { holdCoin, swipeCoin } = require("./func/holdCoin");
+const { roullete } = require("./func/roullete");
 configDotenv();
 // Schedule the task to run every hour on the hour
-playGame();
-claimMission();
-claimRewards();
-mission();
-cron.schedule("0 * * * *", playGame);
-cron.schedule("0 * * * *", claimMission);
-cron.schedule("0 * * * *", claimRewards);
-cron.schedule("0 * * * *", mission);
-
-cron.schedule("0 0 * * *", DailyRewards);
+dailyMission();
+holdCoin();
+roullete();
+swipeCoin();
+cron.schedule("0 * * * *", holdCoin);
+cron.schedule("0 * * * *", roullete);
+cron.schedule("0 * * * *", swipeCoin);
+cron.schedule("0 * * * *", dailyMission);
 
 // Start the server
 const port = process.env.PORT || 104;
