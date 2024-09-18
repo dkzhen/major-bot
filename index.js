@@ -14,6 +14,7 @@ roullete();
 swipeCoin();
 getUserVisit();
 cron.schedule("0 * * * *", holdCoin);
+cron.schedule("0 * * * *", getUserVisit);
 cron.schedule("0 * * * *", roullete);
 cron.schedule("0 * * * *", swipeCoin);
 cron.schedule("0 * * * *", dailyMission);
