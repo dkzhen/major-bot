@@ -5,12 +5,14 @@ const { configDotenv } = require("dotenv");
 const { dailyMission } = require("./func/dailyMission");
 const { holdCoin, swipeCoin } = require("./func/holdCoin");
 const { roullete } = require("./func/roullete");
+const { getUserVisit } = require("./func/visit");
 configDotenv();
 // Schedule the task to run every hour on the hour
-dailyMission();
-holdCoin();
-roullete();
-swipeCoin();
+// dailyMission();
+// holdCoin();
+// roullete();
+// swipeCoin();
+getUserVisit();
 cron.schedule("0 * * * *", holdCoin);
 cron.schedule("0 * * * *", roullete);
 cron.schedule("0 * * * *", swipeCoin);
